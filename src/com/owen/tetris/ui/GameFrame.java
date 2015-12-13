@@ -18,6 +18,7 @@ public class GameFrame extends JFrame {
         int x = (screen.width - this.getWidth()) >> 1;
         int y = (screen.height - this.getHeight()) >> 1;
         this.setLocation(x, y);
+        this.setContentPane(new PanelGame());
     }
 
 }
