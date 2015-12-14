@@ -8,7 +8,15 @@ import java.awt.*;
  */
 public class PanelGame extends JPanel {
 
-    private Layer layer1 = new Layer(128, 32, 320, 576);
+    private Layer[] layers = new Layer[] {
+            new Layer(40, 32, 334, 279),
+            new Layer(40, 343, 334, 279),
+            new Layer(414, 32, 334, 590),
+            new Layer(788, 32, 334, 124),
+            new Layer(788, 188, 176, 148),
+            new Layer(964, 188, 158, 148),
+            new Layer(788, 368, 334, 200)
+    };
 
     public PanelGame() {
     }
@@ -17,28 +25,9 @@ public class PanelGame extends JPanel {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
 
-        layer1.createWindow(g);
-
-//        Image img = new ImageIcon("graphics/window/Window2.png").getImage();
-//
-//
-//        int x = 32;
-//        int y = 32;
-//        int w = 256;
-//        int h = 128;
-//        int size = 7;
-//        int imgW = img.getWidth(null);
-//        int imgH = img.getHeight(null);
-//
-//        g.drawImage(img, x, y, x + size, y + size, 0, 0, size, size, null);
-//        g.drawImage(img, x + size, y, x + w - size, y + size, size, 0, imgW - size, size, null);
-//        g.drawImage(img, x + w - size, y, x + w, y + size, imgW - size, 0, imgW, size, null);
-//        g.drawImage(img, x, y + size, x + size, y + h - size, 0, size, size, imgH - size, null);
-//        g.drawImage(img, x + size, y + size, x + w - size, y + h - size, size, size, imgW - size, imgH - size, null);
-//        g.drawImage(img, x + w - size, y + size, x + w, y + h - size, imgW - size, size, imgW, imgH - size, null);
-//        g.drawImage(img, x, y + h - size, x + size, y + h, 0, imgH - size, size, imgH, null);
-//        g.drawImage(img, x + size, y + h - size, x + w - size, y + h, size, imgH - size, imgW - size, imgH, null);
-//        g.drawImage(img, x + w - size, y + h - size, x + w, y + h, imgW - size, imgH - size, imgW, imgH, null);
+        for (int i = 0; i < layers.length; i++) {
+            layers[i].createWindow(g);
+        }
     }
 
 
