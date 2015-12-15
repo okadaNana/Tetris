@@ -9,13 +9,14 @@ import java.awt.*;
 public class PanelGame extends JPanel {
 
     private Layer[] layers = new Layer[] {
-            new Layer(40, 32, 334, 279),
-            new Layer(40, 343, 334, 279),
-            new Layer(414, 32, 334, 590),
-            new Layer(788, 32, 334, 124),
-            new Layer(788, 188, 176, 148),
-            new Layer(964, 188, 158, 148),
-            new Layer(788, 368, 334, 200)
+            new LayerBackground(0, 0, 0, 0),
+            new LayerDataBase(40, 32, 334, 279),
+            new LayerDisk(40, 343, 334, 279),
+            new LayerGame(414, 32, 334, 590),
+            new LayerButton(788, 32, 334, 124),
+            new LayerNext(788, 188, 176, 148),
+            new LayerLevel(964, 188, 158, 148),
+            new LayerAbout(788, 368, 334, 200)
     };
 
     public PanelGame() {
@@ -26,7 +27,7 @@ public class PanelGame extends JPanel {
         super.paintComponent(g);
 
         for (int i = 0; i < layers.length; i++) {
-            layers[i].createWindow(g);
+            layers[i].paint(g);
         }
     }
 

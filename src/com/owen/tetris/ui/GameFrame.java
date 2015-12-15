@@ -11,7 +11,7 @@ public class GameFrame extends JFrame {
     public GameFrame() {
         this.setTitle("Java俄罗斯方块");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setSize(1200, 700);
+        this.setSize(1162, 670);
         this.setResizable(false);
         Toolkit toolkit = Toolkit.getDefaultToolkit();
         Dimension screen = toolkit.getScreenSize();
