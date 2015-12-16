@@ -17,6 +17,7 @@ public class LayerBackground extends Layer {
     @Override
     protected void paint(Graphics g) {
         g.drawImage(IMG_BG, 0, 0, 1162, 654, null);
+
     }
 
 }

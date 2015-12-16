@@ -1,6 +1,6 @@
 package com.owen.tetris.main;
 
-import com.owen.tetris.ui.GameFrame;
+import com.owen.tetris.ui.JGameFrame;
 
 /**
  * Created by mike on 15/12/13.
@@ -8,7 +8,7 @@ import com.owen.tetris.ui.GameFrame;
 public class Main {
 
     public static void main(String[] args) {
-        new GameFrame().setVisible(true);
+        new JGameFrame().setVisible(true);
     }
 
 }

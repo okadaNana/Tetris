@@ -6,7 +6,7 @@ import java.awt.*;
 /**
  * Created by mike on 15/12/13.
  */
-public class PanelGame extends JPanel {
+public class JPanelGame extends JPanel {
 
     private Layer[] layers = new Layer[] {
             new LayerBackground(0, 0, 0, 0),
@@ -19,7 +19,7 @@ public class PanelGame extends JPanel {
             new LayerAbout(788, 368, 334, 200)
     };
 
-    public PanelGame() {
+    public JPanelGame() {
     }
 
     @Override

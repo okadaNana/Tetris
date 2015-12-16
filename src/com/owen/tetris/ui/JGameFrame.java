@@ -6,9 +6,9 @@ import java.awt.*;
 /**
  * Created by mike on 15/12/13.
  */
-public class GameFrame extends JFrame {
+public class JGameFrame extends JFrame {
 
-    public GameFrame() {
+    public JGameFrame() {
         this.setTitle("Java俄罗斯方块");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setSize(1162, 670);
@@ -18,7 +18,7 @@ public class GameFrame extends JFrame {
         int x = (screen.width - this.getWidth()) >> 1;
         int y = (screen.height - this.getHeight()) >> 1;
         this.setLocation(x, y);
-        this.setContentPane(new PanelGame());
+        this.setContentPane(new JPanelGame());
     }
 
 }
