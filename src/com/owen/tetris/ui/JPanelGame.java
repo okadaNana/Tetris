@@ -1,33 +1,52 @@
 package com.owen.tetris.ui;
 
+import com.owen.tetris.config.ConfigFactory;
+import com.owen.tetris.config.GameConfig;
+import com.owen.tetris.config.LayerConfig;
+
 import javax.swing.*;
 import java.awt.*;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
+import java.util.List;
+
 
 /**
  * Created by mike on 15/12/13.
  */
 public class JPanelGame extends JPanel {
 
-    private Layer[] layers = new Layer[] {
-            new LayerBackground(0, 0, 0, 0),
-            new LayerDataBase(40, 32, 334, 279),
-            new LayerDisk(40, 343, 334, 279),
-            new LayerGame(414, 32, 334, 590),
-            new LayerButton(788, 32, 334, 124),
-            new LayerNext(788, 188, 176, 148),
-            new LayerLevel(964, 188, 158, 148),
-            new LayerAbout(788, 368, 334, 200)
-    };
+    private List<Layer> layers;
 
     public JPanelGame() {
+        try {
+            GameConfig cfg = ConfigFactory.getGameConfig();
+            List<LayerConfig> layersCfg = cfg.getLayerConfig();
+            layers = new ArrayList<>(cfg.getLayerConfig().size());
+            for (LayerConfig layerCfg : layersCfg) {
+                Class<?> cls = Class.forName(layerCfg.getClassName());
+                Constructor ctr = cls.getConstructor(int.class, int.class, int.class, int.class);
+                Layer l = (Layer) ctr.newInstance(
+                        layerCfg.getX(),
+                        layerCfg.getY(),
+                        layerCfg.getW(),
+                        layerCfg.getH()
+                );
+                layers.add(l);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
 
-        for (int i = 0; i < layers.length; i++) {
-            layers[i].paint(g);
+        // 绘制游戏界面
+        for (int i = 0; i < layers.size(); i++) {
+            layers.get(i).paint(g);
         }
     }
 
