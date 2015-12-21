@@ -3,11 +3,12 @@ package com.owen.tetris.ui;
 import com.owen.tetris.config.ConfigFactory;
 import com.owen.tetris.config.GameConfig;
 import com.owen.tetris.config.LayerConfig;
+import com.owen.tetris.control.GameControl;
+import com.owen.tetris.control.PlayerControl;
 
 import javax.swing.*;
 import java.awt.*;
 import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,6 +21,22 @@ public class JPanelGame extends JPanel {
     private List<Layer> layers;
 
     public JPanelGame() {
+        initComponent();
+        initLayer();
+    }
+
+    /**
+     * 初始化组件
+     */
+    private void initComponent() {
+        GameControl ctrl = new GameControl(this);
+        this.addKeyListener(new PlayerControl(ctrl));
+    }
+
+    /**
+     * 初始化层
+     */
+    private void initLayer() {
         try {
             GameConfig cfg = ConfigFactory.getGameConfig();
             List<LayerConfig> layersCfg = cfg.getLayerConfig();
@@ -46,6 +63,7 @@ public class JPanelGame extends JPanel {
 
         // 绘制游戏界面
         for (int i = 0; i < layers.size(); layers.get(i++).paint(g));
+        this.requestFocus();
     }
 
 
