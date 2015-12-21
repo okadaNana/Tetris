@@ -1,5 +1,8 @@
 package com.owen.tetris.ui;
 
+import com.owen.tetris.config.ConfigFactory;
+import com.owen.tetris.config.GameConfig;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -9,14 +12,16 @@ import java.awt.*;
 public class JGameFrame extends JFrame {
 
     public JGameFrame() {
-        this.setTitle("Java俄罗斯方块");
+        GameConfig cfg = ConfigFactory.getGameConfig();
+
+        this.setTitle(cfg.getTitle());
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setSize(1162, 670);
+        this.setSize(cfg.getWidth(), cfg.getHeight());
         this.setResizable(false);
         Toolkit toolkit = Toolkit.getDefaultToolkit();
         Dimension screen = toolkit.getScreenSize();
-        int x = (screen.width - this.getWidth()) >> 1;
-        int y = (screen.height - this.getHeight()) >> 1;
+        int x = (screen.width - this.getWidth()) >> 1;  // 先乘除,后加减,再位移
+        int y = ((screen.height - this.getHeight()) >> 1) - cfg.getWindowUp();
         this.setLocation(x, y);
         this.setContentPane(new JPanelGame());
     }

@@ -45,9 +45,7 @@ public class JPanelGame extends JPanel {
         super.paintComponent(g);
 
         // 绘制游戏界面
-        for (int i = 0; i < layers.size(); i++) {
-            layers.get(i).paint(g);
-        }
+        for (int i = 0; i < layers.size(); layers.get(i++).paint(g));
     }
 
 

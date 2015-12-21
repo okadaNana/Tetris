@@ -1,5 +1,8 @@
 package com.owen.tetris.ui;
 
+import com.owen.tetris.config.ConfigFactory;
+import com.owen.tetris.config.GameConfig;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -13,12 +16,18 @@ public abstract class Layer {
     /**
      * 窗口内容的内边距
      */
-    protected static final int PADDING = 16;
+    protected static final int PADDING;
 
     /**
      * 边框的宽度
      */
-    private static final int SIZE = 7;
+    private static final int SIZE;
+
+    static {
+        GameConfig cfg = ConfigFactory.getGameConfig();
+        PADDING = cfg.getPadding();
+        SIZE = cfg.getWindowSize();
+    }
 
     /**
      * 窗口图片
@@ -38,22 +47,22 @@ public abstract class Layer {
     /**
      * 窗口左上角 x 坐标
      */
-    protected int x;
+    protected final int x;
 
     /**
      * 窗口左上角 y 坐标
      */
-    protected int y;
+    protected final int y;
 
     /**
      * 窗口宽度
      */
-    protected int w;
+    protected final int w;
 
     /**
      * 窗口高度
      */
-    protected int h;
+    protected final int h;
 
     public Layer(int x, int y, int w, int h) {
         this.x = x;

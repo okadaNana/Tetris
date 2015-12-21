@@ -17,6 +17,8 @@ import java.util.List;
 public class GameConfig {
     private int width;
     private int height;
+    private int windowUp;
+    private String title;
     private int windowSize;
     private int padding;
     private List<LayerConfig> layerConfig;
@@ -40,6 +42,9 @@ public class GameConfig {
         this.height = Integer.parseInt(frame.attributeValue("height"));
         this.padding = Integer.parseInt(frame.attributeValue("padding"));
         this.windowSize = Integer.parseInt(frame.attributeValue("windowSize"));
+        this.padding = Integer.parseInt(frame.attributeValue("padding"));
+        this.title = frame.attributeValue("title");
+        this.windowUp = Integer.parseInt(frame.attributeValue("windowUp"));
 
         List<Element> layers = frame.elements("layer");
         layerConfig = new ArrayList<>();
@@ -91,5 +96,13 @@ public class GameConfig {
 
     public List<LayerConfig> getLayerConfig() {
         return layerConfig;
+    }
+
+    public int getWindowUp() {
+        return windowUp;
+    }
+
+    public String getTitle() {
+        return title;
     }
 }
