@@ -23,7 +23,7 @@ public class JFrameGame extends JFrame {
         int x = (screen.width - this.getWidth()) >> 1;  // 先乘除,后加减,再位移
         int y = ((screen.height - this.getHeight()) >> 1) - cfg.getWindowUp();
         this.setLocation(x, y);
-        this.setContentPane(new JPanelGame());
+        this.setContentPane(panel);
         this.setVisible(true);
     }
 

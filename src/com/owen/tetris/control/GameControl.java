@@ -29,4 +29,9 @@ public class GameControl {
         this.gameService = gameService;
     }
 
+    public void test() {
+        this.gameService.gameTest();
+        this.panelGame.repaint();
+    }
+
 }

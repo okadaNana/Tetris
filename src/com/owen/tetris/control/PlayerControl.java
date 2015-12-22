@@ -24,6 +24,6 @@ public class PlayerControl extends KeyAdapter {
      */
     @Override
     public void keyPressed(KeyEvent e) {
-
+        this.gameControl.test();
     }
 }

@@ -18,4 +18,9 @@ public class GameService {
         this.dto = dto;
     }
 
+    public void gameTest() {
+        int temp = dto.getNowPoint();
+        dto.setNowPoint(temp + 1);
+    }
+
 }
