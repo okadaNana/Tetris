@@ -9,9 +9,9 @@ import java.awt.*;
 /**
  * Created by mike on 15/12/13.
  */
-public class JGameFrame extends JFrame {
+public class JFrameGame extends JFrame {
 
-    public JGameFrame() {
+    public JFrameGame(JPanelGame panel) {
         GameConfig cfg = ConfigFactory.getGameConfig();
 
         this.setTitle(cfg.getTitle());
@@ -24,6 +24,7 @@ public class JGameFrame extends JFrame {
         int y = ((screen.height - this.getHeight()) >> 1) - cfg.getWindowUp();
         this.setLocation(x, y);
         this.setContentPane(new JPanelGame());
+        this.setVisible(true);
     }
 
 }

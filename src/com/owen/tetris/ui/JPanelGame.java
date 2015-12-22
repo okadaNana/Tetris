@@ -5,6 +5,7 @@ import com.owen.tetris.config.GameConfig;
 import com.owen.tetris.config.LayerConfig;
 import com.owen.tetris.control.GameControl;
 import com.owen.tetris.control.PlayerControl;
+import com.owen.tetris.dto.GameDto;
 import com.owen.tetris.service.GameService;
 
 import javax.swing.*;
@@ -21,17 +22,26 @@ public class JPanelGame extends JPanel {
 
     private List<Layer> layers;
 
-    public JPanelGame() {
+    private GameDto dto;
+
+    public JPanelGame(GameDto dto) {
+        // 获得 dto 对象
+        this.dto = dto;
         initComponent();
         initLayer();
+    }
+
+    /**
+     * 安装玩家控制器
+     */
+    public void setPlayerControl(PlayerControl playerControl) {
+       this.addKeyListener(playerControl);
     }
 
     /**
      * 初始化组件
      */
     private void initComponent() {
-        // 这种组装方法不好
-        this.addKeyListener(new PlayerControl(new GameControl(this, new GameService())));
     }
 
     /**
@@ -45,13 +55,16 @@ public class JPanelGame extends JPanel {
             for (LayerConfig layerCfg : layersCfg) {
                 Class<?> cls = Class.forName(layerCfg.getClassName());
                 Constructor ctr = cls.getConstructor(int.class, int.class, int.class, int.class);
-                Layer l = (Layer) ctr.newInstance(
+                Layer layer = (Layer) ctr.newInstance(
                         layerCfg.getX(),
                         layerCfg.getY(),
                         layerCfg.getW(),
                         layerCfg.getH()
                 );
-                layers.add(l);
+                // 设置游戏数据对象
+                layer.setDto(dto);
+
+                layers.add(layer);
             }
         } catch (Exception e) {
             e.printStackTrace();

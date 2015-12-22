@@ -2,6 +2,7 @@ package com.owen.tetris.ui;
 
 import com.owen.tetris.config.ConfigFactory;
 import com.owen.tetris.config.GameConfig;
+import com.owen.tetris.dto.GameDto;
 
 import javax.swing.*;
 import java.awt.*;
@@ -64,6 +65,11 @@ public abstract class Layer {
      */
     protected final int h;
 
+    /**
+     * 游戏数据
+     */
+    protected GameDto dto;
+
     public Layer(int x, int y, int w, int h) {
         this.x = x;
         this.y = y;
@@ -84,6 +90,10 @@ public abstract class Layer {
         g.drawImage(WINDOW_IMG, x, y + h - SIZE, x + SIZE, y + h, 0, WINDOW_H - SIZE, SIZE, WINDOW_H, null);
         g.drawImage(WINDOW_IMG, x + SIZE, y + h - SIZE, x + w - SIZE, y + h, SIZE, WINDOW_H - SIZE, WINDOW_W - SIZE, WINDOW_H, null);
         g.drawImage(WINDOW_IMG, x + w - SIZE, y + h - SIZE, x + w, y + h, WINDOW_W - SIZE, WINDOW_H - SIZE, WINDOW_W, WINDOW_H, null);
+    }
+
+    public void setDto(GameDto dto) {
+        this.dto = dto;
     }
 
     /**
