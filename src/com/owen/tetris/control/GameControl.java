@@ -24,8 +24,9 @@ public class GameControl {
      */
     private GameService gameService;
 
-    public GameControl(JPanelGame jPanelGame) {
-        this.panelGame = jPanelGame;
+    public GameControl(JPanelGame panelGame, GameService gameService) {
+        this.panelGame = panelGame;
+        this.gameService = gameService;
     }
 
 }

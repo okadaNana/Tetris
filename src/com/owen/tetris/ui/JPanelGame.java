@@ -5,6 +5,7 @@ import com.owen.tetris.config.GameConfig;
 import com.owen.tetris.config.LayerConfig;
 import com.owen.tetris.control.GameControl;
 import com.owen.tetris.control.PlayerControl;
+import com.owen.tetris.service.GameService;
 
 import javax.swing.*;
 import java.awt.*;
@@ -29,8 +30,8 @@ public class JPanelGame extends JPanel {
      * 初始化组件
      */
     private void initComponent() {
-        GameControl ctrl = new GameControl(this);
-        this.addKeyListener(new PlayerControl(ctrl));
+        // 这种组装方法不好
+        this.addKeyListener(new PlayerControl(new GameControl(this, new GameService())));
     }
 
     /**
