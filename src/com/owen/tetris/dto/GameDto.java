@@ -54,6 +54,17 @@ public class GameDto {
      */
     private int nowRemoveLine;
 
+    public GameDto() {
+
+    }
+
+    /**
+     * DTO 初始化
+     */
+    public void dtoInit() {
+
+    }
+
     public List<Player> getDbRecord() {
         return dbRecord;
     }
