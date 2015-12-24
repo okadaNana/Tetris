@@ -22,6 +22,7 @@ public class LayerGame extends Layer {
         this.createWindow(g);
 
         Point[] points = this.dto.getGameAct().getActPoints();
+        // 打印方块
         for (int i = 0; i < points.length; i++) {
             g.drawImage(ACT,
                     this.x + points[i].x * ACT_SIZE + 7,
@@ -29,6 +30,21 @@ public class LayerGame extends Layer {
                     this.x + points[i].x * ACT_SIZE + ACT_SIZE + 7,
                     this.y + points[i].y * ACT_SIZE + ACT_SIZE + 7,
                     32, 0, 64, 32, null);
+        }
+
+        // 打印游戏地图
+        boolean[][] gameMap = this.dto.getGameMap();
+        for (int x = 0; x < gameMap.length; x++) {
+            for (int y = 0; y < gameMap[x].length; y++) {
+                if (gameMap[x][y]) {
+                    g.drawImage(ACT,
+                            this.x + x * ACT_SIZE + 7,
+                            this.y + y * ACT_SIZE + 7,
+                            this.x + x * ACT_SIZE + ACT_SIZE + 7,
+                            this.y + y * ACT_SIZE + ACT_SIZE + 7,
+                            0, 0, 32, 32, null);
+                }
+            }
         }
     }
 

@@ -34,7 +34,7 @@ public class GameService {
      * 控制器方向键(下)
      */
     public void keyDown() {
-        if (this.dto.getGameAct().move(0, +1)) {
+        if (!this.dto.getGameAct().move(0, +1)) {
             // 无法继续向下移动了
             boolean[][] gameMap = this.dto.getGameMap();
             Point[] actPoints = this.dto.getGameAct().getActPoints();
