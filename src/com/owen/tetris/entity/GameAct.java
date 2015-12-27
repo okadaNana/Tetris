@@ -20,11 +20,19 @@ public class GameAct {
     private static final int MAX_Y = 17;
 
     public GameAct() {
+        this.init(0);
+    }
+
+    /**
+     *
+     */
+    public void init(int actCode) {
+        // TODO 根据 actCode 的值刷新方块
         actPoints = new Point[]{
-            new Point(4, 0),
-            new Point(3, 0),
-            new Point(5, 0),
-            new Point(5, 1)
+                new Point(4, 0),
+                new Point(3, 0),
+                new Point(5, 0),
+                new Point(5, 1)
         };
     }
 

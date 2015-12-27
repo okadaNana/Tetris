@@ -24,35 +24,47 @@ public class GameService {
     }
 
     /**
-     * 控制器方向键(上)
+     * 方块操作(上)
      */
     public void keyUp() {
         this.dto.getGameAct().round();
     }
 
     /**
-     * 控制器方向键(下)
+     * 方块操作(下)
      */
     public void keyDown() {
-        if (!this.dto.getGameAct().move(0, +1)) {
-            // 无法继续向下移动了
-            boolean[][] gameMap = this.dto.getGameMap();
-            Point[] actPoints = this.dto.getGameAct().getActPoints();
-            for (int i = 0; i < actPoints.length; i++) {
-                gameMap[actPoints[i].x][actPoints[i].y] = true;
-            }
+        if (this.dto.getGameAct().move(0, +1)) {
+            return;
         }
+
+        // 无法继续向下移动了
+
+        // 方块堆积到地图
+        boolean[][] gameMap = this.dto.getGameMap();
+        Point[] actPoints = this.dto.getGameAct().getActPoints();
+        for (int i = 0; i < actPoints.length; i++) {
+            gameMap[actPoints[i].x][actPoints[i].y] = true;
+        }
+
+        // 判断是否可以消行
+        //  如果可以,就消
+        //  算分操作
+        //  判读是否升级
+        //      如果可以升级,就升级
+        // 刷新一个新的方块
+        this.dto.getGameAct().init(0);
     }
 
     /**
-     * 控制器方向键(左)
+     * 方块操作(左)
      */
     public void keyLeft() {
         this.dto.getGameAct().move(-1, 0);
     }
 
     /**
-     * 控制器方向键(右)
+     * 方块操作(右)
      */
     public void keyRight() {
         this.dto.getGameAct().move(+1, 0);
