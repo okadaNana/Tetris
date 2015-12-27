@@ -23,9 +23,6 @@ public class GameAct {
         this.init(0);
     }
 
-    /**
-     *
-     */
     public void init(int actCode) {
         // TODO 根据 actCode 的值刷新方块
         actPoints = new Point[]{
@@ -46,12 +43,12 @@ public class GameAct {
      * @param moveX x 轴偏移量
      * @param moveY y 轴偏移量
      */
-    public boolean move(int moveX, int moveY) {
+    public boolean move(int moveX, int moveY, boolean[][] gameMap) {
         for (int i = 0; i < actPoints.length; i++) {
             int newX = actPoints[i].x + moveX;
             int newY = actPoints[i].y + moveY;
 
-            if (this.isOverMap(newX, newY)) {
+            if (this.isOverZone(newX, newY, gameMap)) {
                 return false;
             }
         }
@@ -71,12 +68,12 @@ public class GameAct {
      * A.x = O.y + O.x - B.y
      * A.y = O.y - O.x + B.x
      */
-    public void round() {
+    public void round(boolean[][] gameMap) {
         for (int i = 1; i < actPoints.length; i++) {
             int newX = actPoints[0].y + actPoints[0].x - actPoints[i].y;
             int newY = actPoints[0].y - actPoints[0].x + actPoints[i].x;
 
-            if (this.isOverMap(newX, newY)) {
+            if (this.isOverZone(newX, newY, gameMap)) {
                 // 不可以旋转
                 return;
             }
@@ -96,8 +93,9 @@ public class GameAct {
     /**
      * 判断某一个点是否超出游戏地图边界
      */
-    private boolean isOverMap(int x, int y) {
-        return x < MIN_X || x > MAX_X || y < MIN_Y || y > MAX_Y;
+    private boolean isOverZone(int x, int y, boolean[][] gameMap) {
+        // 超出地图边界 或者 所在的位置已经有方块堆积了
+        return x < MIN_X || x > MAX_X || y < MIN_Y || y > MAX_Y || gameMap[x][y];
     }
 
 }

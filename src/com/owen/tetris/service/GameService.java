@@ -27,14 +27,14 @@ public class GameService {
      * 方块操作(上)
      */
     public void keyUp() {
-        this.dto.getGameAct().round();
+        this.dto.getGameAct().round(this.dto.getGameMap());
     }
 
     /**
      * 方块操作(下)
      */
     public void keyDown() {
-        if (this.dto.getGameAct().move(0, +1)) {
+        if (this.dto.getGameAct().move(0, +1, this.dto.getGameMap())) {
             return;
         }
 
@@ -60,14 +60,14 @@ public class GameService {
      * 方块操作(左)
      */
     public void keyLeft() {
-        this.dto.getGameAct().move(-1, 0);
+        this.dto.getGameAct().move(-1, 0, this.dto.getGameMap());
     }
 
     /**
      * 方块操作(右)
      */
     public void keyRight() {
-        this.dto.getGameAct().move(+1, 0);
+        this.dto.getGameAct().move(+1, 0, this.dto.getGameMap());
     }
 
 }
