@@ -4,6 +4,7 @@ import com.owen.tetris.dto.GameDto;
 import com.owen.tetris.entity.GameAct;
 
 import java.awt.*;
+import java.util.Random;
 
 /**
  * 游戏逻辑
@@ -53,7 +54,7 @@ public class GameService {
         //  判读是否升级
         //      如果可以升级,就升级
         // 刷新一个新的方块
-        this.dto.getGameAct().init(0);
+        this.dto.getGameAct().init(new Random().nextInt(7));
     }
 
     /**

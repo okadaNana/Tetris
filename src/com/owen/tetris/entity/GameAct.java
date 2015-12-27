@@ -1,6 +1,8 @@
 package com.owen.tetris.entity;
 
 import java.awt.*;
+import java.util.*;
+import java.util.List;
 
 /**
  * 方块
@@ -19,18 +21,34 @@ public class GameAct {
     private static final int MIN_Y = 0;
     private static final int MAX_Y = 17;
 
+
+    private static List<Point[]> TYPE_CONFIG;
+
+    static {
+        TYPE_CONFIG = new ArrayList<>(7);
+
+        TYPE_CONFIG.add(new Point[]{new Point(4, 0), new Point(3, 0), new Point(5, 0), new Point(6, 0)});
+        TYPE_CONFIG.add(new Point[]{new Point(4, 0), new Point(3, 0), new Point(5, 0), new Point(4, 1)});
+        TYPE_CONFIG.add(new Point[]{new Point(4, 0), new Point(3, 0), new Point(5, 0), new Point(3, 1)});
+        TYPE_CONFIG.add(new Point[]{new Point(4, 0), new Point(5, 0), new Point(3, 1), new Point(4, 1)});
+        TYPE_CONFIG.add(new Point[]{new Point(4, 0), new Point(5, 0), new Point(4, 1), new Point(5, 1)});
+        TYPE_CONFIG.add(new Point[]{new Point(4, 0), new Point(3, 0), new Point(5, 0), new Point(5, 1)});
+        TYPE_CONFIG.add(new Point[]{new Point(4, 0), new Point(3, 0), new Point(4, 1), new Point(5, 1)});
+    }
+
     public GameAct() {
         this.init(0);
     }
 
     public void init(int actCode) {
         // TODO 根据 actCode 的值刷新方块
-        actPoints = new Point[]{
-                new Point(4, 0),
-                new Point(3, 0),
-                new Point(5, 0),
-                new Point(5, 1)
-        };
+        // 所有的 switch case 都可以做成数组映射
+        Point[] points = TYPE_CONFIG.get(actCode);
+
+        actPoints = new Point[points.length];
+        for (int i = 0; i < actPoints.length; i++) {
+            actPoints[i] = new Point(points[i].x, points[i].y);
+        }
     }
 
     public Point[] getActPoints() {
@@ -64,7 +82,7 @@ public class GameAct {
 
     /**
      * 方块旋转
-     *
+     * <p>
      * A.x = O.y + O.x - B.y
      * A.y = O.y - O.x + B.x
      */
