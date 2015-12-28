@@ -16,6 +16,11 @@ public class GameAct {
      */
     private Point[] actPoints;
 
+    /**
+     * 每个方块的编号
+     */
+    private int typeCode;
+
     private static final int MIN_X = 0;
     private static final int MAX_X = 9;
     private static final int MIN_Y = 0;
@@ -36,14 +41,13 @@ public class GameAct {
         TYPE_CONFIG.add(new Point[]{new Point(4, 0), new Point(3, 0), new Point(4, 1), new Point(5, 1)});
     }
 
-    public GameAct() {
-        this.init(0);
+    public GameAct(int typeCode) {
+        this.init(typeCode);
     }
 
-    public void init(int actCode) {
-        // TODO 根据 actCode 的值刷新方块
-        // 所有的 switch case 都可以做成数组映射
-        Point[] points = TYPE_CONFIG.get(actCode);
+    public void init(int typeCode) {
+        this.typeCode = typeCode;
+        Point[] points = TYPE_CONFIG.get(typeCode);  // 所有的 switch case 都可以做成数组映射
 
         actPoints = new Point[points.length];
         for (int i = 0; i < actPoints.length; i++) {
@@ -87,6 +91,11 @@ public class GameAct {
      * A.y = O.y - O.x + B.x
      */
     public void round(boolean[][] gameMap) {
+        if (typeCode == 4) {
+            // 如果是正方形的方块,就不需要旋转
+            return;
+        }
+
         for (int i = 1; i < actPoints.length; i++) {
             int newX = actPoints[0].y + actPoints[0].x - actPoints[i].y;
             int newY = actPoints[0].y - actPoints[0].x + actPoints[i].x;
@@ -116,4 +125,10 @@ public class GameAct {
         return x < MIN_X || x > MAX_X || y < MIN_Y || y > MAX_Y || gameMap[x][y];
     }
 
+    /**
+     * 获取方块类型编号,根据编号来绘制方块
+     */
+    public int getTypeCode() {
+        return typeCode;
+    }
 }

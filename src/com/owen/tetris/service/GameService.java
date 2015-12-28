@@ -18,9 +18,16 @@ public class GameService {
      */
     private GameDto dto;
 
+    /**
+     * 随机数生成器
+     */
+    private Random random = new Random();
+
+    private static final int MAX_TYPE = 6;
+
     public GameService(GameDto dto) {
         this.dto = dto;
-        GameAct act = new GameAct();
+        GameAct act = new GameAct(random.nextInt(MAX_TYPE));
         dto.setGameAct(act);
     }
 
