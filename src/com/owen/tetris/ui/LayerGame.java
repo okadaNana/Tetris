@@ -16,6 +16,8 @@ public class LayerGame extends Layer {
 
     private static int ACT_SIZE = 32;
 
+    private static int SIZE_ROL = 5;
+
     public LayerGame(int x, int y, int w, int h) {
         super(x, y, w, h);
     }
@@ -29,28 +31,30 @@ public class LayerGame extends Layer {
         Point[] points = this.dto.getGameAct().getActPoints();
         // 打印方块
         for (int i = 0; i < points.length; i++) {
-            g.drawImage(ACT,
-                    this.x + points[i].x * ACT_SIZE + 7,
-                    this.y + points[i].y * ACT_SIZE + 7,
-                    this.x + points[i].x * ACT_SIZE + ACT_SIZE + 7,
-                    this.y + points[i].y * ACT_SIZE + ACT_SIZE + 7,
-                    (typeCode + 1) * ACT_SIZE, 0, (typeCode + 1) * ACT_SIZE + ACT_SIZE, ACT_SIZE, null);
-        }
+            draActByPoint(points[i].x, points[i].y, typeCode + 1, g);
+        }g
 
         // 打印游戏地图
         boolean[][] gameMap = this.dto.getGameMap();
         for (int x = 0; x < gameMap.length; x++) {
             for (int y = 0; y < gameMap[x].length; y++) {
                 if (gameMap[x][y]) {
-                    g.drawImage(ACT,
-                            this.x + x * ACT_SIZE + 7,
-                            this.y + y * ACT_SIZE + 7,
-                            this.x + x * ACT_SIZE + ACT_SIZE + 7,
-                            this.y + y * ACT_SIZE + ACT_SIZE + 7,
-                            0, 0, 32, 32, null);
+                    draActByPoint(x, y, 0, g);
                 }
             }
         }
+    }
+
+    /**
+     * 绘制正方形块
+     */
+    private void draActByPoint(int x, int y, int imgIdx, Graphics g) {
+        g.drawImage(ACT,
+                this.x + (x << SIZE_ROL) + 7,
+                this.y + (y << SIZE_ROL) + 7,
+                this.x + (x + 1 << SIZE_ROL) + 7,
+                this.y + (y +1 << SIZE_ROL) + 7,
+                imgIdx << SIZE_ROL, 0, (imgIdx + 1) << SIZE_ROL, 1 << SIZE_ROL, null);
     }
 
 }
