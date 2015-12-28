@@ -1,5 +1,7 @@
 package com.owen.tetris.ui;
 
+import com.owen.tetris.entity.GameAct;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -21,6 +23,9 @@ public class LayerGame extends Layer {
     public void paint(Graphics g) {
         this.createWindow(g);
 
+        // 获得方块类型编号(0~6)
+        int typeCode = this.dto.getGameAct().getTypeCode();
+        // 获得方块数组集合
         Point[] points = this.dto.getGameAct().getActPoints();
         // 打印方块
         for (int i = 0; i < points.length; i++) {
@@ -29,7 +34,7 @@ public class LayerGame extends Layer {
                     this.y + points[i].y * ACT_SIZE + 7,
                     this.x + points[i].x * ACT_SIZE + ACT_SIZE + 7,
                     this.y + points[i].y * ACT_SIZE + ACT_SIZE + 7,
-                    32, 0, 64, 32, null);
+                    (typeCode + 1) * ACT_SIZE, 0, (typeCode + 1) * ACT_SIZE + ACT_SIZE, ACT_SIZE, null);
         }
 
         // 打印游戏地图
