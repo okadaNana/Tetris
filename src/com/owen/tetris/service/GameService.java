@@ -61,7 +61,11 @@ public class GameService {
         //  判读是否升级
         //      如果可以升级,就升级
         // 刷新一个新的方块
-        this.dto.getGameAct().init(new Random().nextInt(7));
+
+        // 创建下一个方块
+        this.dto.getGameAct().init(this.dto.getNext());
+        // 然后随机生成下一个方块
+        this.dto.setNext(random.nextInt(MAX_TYPE));
     }
 
     /**

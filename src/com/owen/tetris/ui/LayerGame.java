@@ -12,11 +12,11 @@ import java.awt.*;
  */
 public class LayerGame extends Layer {
 
-    private static Image ACT = new ImageIcon("graphics/game/rect.png").getImage();
+    private static final Image ACT = new ImageIcon("graphics/game/rect.png").getImage();
 
-    private static int ACT_SIZE = 32;
+    private static final int ACT_SIZE = 32;
 
-    private static int SIZE_ROL = 5;
+    private static final int SIZE_ROL = 5;
 
     public LayerGame(int x, int y, int w, int h) {
         super(x, y, w, h);
@@ -32,7 +32,7 @@ public class LayerGame extends Layer {
         // 打印方块
         for (int i = 0; i < points.length; i++) {
             draActByPoint(points[i].x, points[i].y, typeCode + 1, g);
-        }g
+        }
 
         // 打印游戏地图
         boolean[][] gameMap = this.dto.getGameMap();
