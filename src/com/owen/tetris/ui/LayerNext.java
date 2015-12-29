@@ -26,7 +26,6 @@ public class LayerNext extends Layer {
     public void paint(Graphics g) {
         this.createWindow(g);
         drawImageAtCenter(NEXT_ACT[this.dto.getNext()], g);
-//        g.drawImage(NEXT_ACT[this.dto.getNext()], this.x + 32, this.y + 32, null);
     }
 
     /**
