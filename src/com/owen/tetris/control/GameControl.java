@@ -61,4 +61,9 @@ public class GameControl {
         this.panelGame.repaint();
     }
 
+    // TODO ================  测试专用方法 =======================
+    public void testLeveUp() {
+        this.gameService.testLevelUp();
+        this.panelGame.repaint();
+    }
 }

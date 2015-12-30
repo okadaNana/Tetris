@@ -82,4 +82,9 @@ public class GameService {
         this.dto.getGameAct().move(+1, 0, this.dto.getGameMap());
     }
 
+    // TODO ================  测试专用方法 =======================
+
+    public void testLevelUp() {
+        this.dto.setNowLevel(this.dto.getNowLevel() + 1);
+    }
 }

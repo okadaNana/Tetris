@@ -41,6 +41,9 @@ public class PlayerControl extends KeyAdapter {
             case KeyEvent.VK_RIGHT:
                 this.gameControl.keyRight();
                 break;
+            case KeyEvent.VK_W:
+                this.gameControl.testLeveUp();
+                break;
 
             default:
                 break;
