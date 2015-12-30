@@ -79,7 +79,7 @@ public abstract class Layer {
     /**
      * 数字切片的宽度
      */
-    private static final int IMG_NUMBER_W = IMG_NUMBER.getWidth(null) / 10;
+    protected static final int IMG_NUMBER_W = IMG_NUMBER.getWidth(null) / 10;
 
     /**
      * 数字切片的高度
