@@ -9,6 +9,7 @@
         <layer className="com.owen.tetris.ui.LayerNext" x="788" y="188" w="176" h="116" />
         <layer className="com.owen.tetris.ui.LayerLevel" x="964" y="188" w="158" h="116" />
         <layer className="com.owen.tetris.ui.LayerPoint" x="788" y="336" w="334" h="160" />
+        <layer className="com.owen.tetris.ui.LayerAbout" x="788" y="528" w="334" h="94" />
     </frame>
     <system></system>
     <data></data>

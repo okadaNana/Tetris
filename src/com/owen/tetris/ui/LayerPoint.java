@@ -15,6 +15,8 @@ public class LayerPoint extends Layer {
      */
     private static final int POINT_BIT = 5;
 
+    private static final int LEVEL_UP = 20;
+
     /**
      * 标题图片(分数)
      */
@@ -80,7 +82,19 @@ public class LayerPoint extends Layer {
         // 显示消行
         this.drawNumber(comX, rmLineY, this.dto.getNowRemoveLine(), POINT_BIT, g);
         // 绘制值槽(经验值)
-        g.fillRect(this.x + PADDING, this.y + expY, this.expW, 32);
+        int h = 32;
+        g.setColor(Color.BLACK);
+        g.fillRect(this.x + PADDING, this.y + expY, this.expW, h);
+        g.setColor(Color.WHITE);
+        g.fillRect(this.x + PADDING + 1, this.y + expY + 1, this.expW - 2, h - 2);
+        g.setColor(Color.BLACK);
+        g.fillRect(this.x + PADDING + 2, this.y + expY + 2, this.expW - 4, h - 4);
+        g.setColor(Color.GREEN);
+        // TODO 临时
+        int rmLine = this.dto.getNowRemoveLine();
+        int w = (int)(1.0 * (rmLine % LEVEL_UP) / LEVEL_UP * (this.expW - 4));
+        System.out.println(w);
+        g.fillRect(this.x + PADDING + 2, this.y + expY + 2, w, h - 4);
     }
 
 }
