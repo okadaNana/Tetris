@@ -5,7 +5,7 @@ import java.awt.*;
 
 /**
  * 分数窗口
- *
+ * <p>
  * Created by mike on 15/12/15.
  */
 public class LayerPoint extends Layer {
@@ -64,7 +64,7 @@ public class LayerPoint extends Layer {
         // 初始化分数显示的y坐标
         this.pointY = PADDING;
         // 初始化消行显示的y坐标
-        this.rmLineY =  this.pointY + IMG_POINT.getHeight(null) + PADDING;
+        this.rmLineY = this.pointY + IMG_POINT.getHeight(null) + PADDING;
         // 初始化经验值y坐标
         this.expY = this.rmLineY + IMG_RMLINE.getHeight(null) + PADDING;
         // 初始化经验值槽宽度
@@ -89,12 +89,26 @@ public class LayerPoint extends Layer {
         g.fillRect(this.x + PADDING + 1, this.y + expY + 1, this.expW - 2, h - 2);
         g.setColor(Color.BLACK);
         g.fillRect(this.x + PADDING + 2, this.y + expY + 2, this.expW - 4, h - 4);
-        g.setColor(Color.GREEN);
         // TODO 临时
         int rmLine = this.dto.getNowRemoveLine();
-        int w = (int)(1.0 * (rmLine % LEVEL_UP) / LEVEL_UP * (this.expW - 4));
-        System.out.println(w);
+        int w = (int) (((double) (rmLine % LEVEL_UP) / (double) LEVEL_UP) * (this.expW - 4));
+        g.setColor(this.getNowColor((double) (rmLine % LEVEL_UP), (double) LEVEL_UP));
         g.fillRect(this.x + PADDING + 2, this.y + expY + 2, w, h - 4);
+    }
+
+    private Color getNowColor(double hp, double maxHp) {
+        int colorR = 0;
+        int colorG = 255;
+        int colorB = 0;
+        double hpHalf = maxHp / 2;
+        if (hp > hpHalf) {
+            colorR = 255 - (int) ((hp - hpHalf) / (maxHp / 2) * 255);
+            colorG = 255;
+        } else {
+            colorR = 255;
+            colorG = (int) (hp / (maxHp / 2) * 255);
+        }
+        return new Color(colorR, colorG, colorB);
     }
 
 }
