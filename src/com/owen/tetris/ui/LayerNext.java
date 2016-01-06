@@ -28,13 +28,4 @@ public class LayerNext extends Layer {
         drawImageAtCenter(NEXT_ACT[this.dto.getNext()], g);
     }
 
-    /**
-     * 把图片绘制在正中间
-     */
-    private void drawImageAtCenter(Image img, Graphics g) {
-        int imgW = img.getWidth(null);
-        int imgH = img.getHeight(null);
-        g.drawImage(img, this.x + (this.w - imgW >> 1), this.y + (this.h - imgH >> 1), null);
-    }
-
 }

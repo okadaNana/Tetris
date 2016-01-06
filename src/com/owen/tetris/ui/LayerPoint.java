@@ -15,8 +15,6 @@ public class LayerPoint extends Layer {
      */
     private static final int POINT_BIT = 5;
 
-    private static final int LEVEL_UP = 20;
-
     /**
      * 标题图片(分数)
      */
@@ -31,6 +29,8 @@ public class LayerPoint extends Layer {
      * 标题图片(消行)的高度
      */
     private static final int IMG_RMLINE_H = IMG_RMLINE.getHeight(null);
+
+    private static final int LEVEL_UP = 20;
 
     /**
      * 消行y坐标
@@ -48,11 +48,6 @@ public class LayerPoint extends Layer {
     private final int expY;
 
     /**
-     * 经验值槽宽度
-     */
-    private final int expW;
-
-    /**
      * 分数x坐标
      */
     private int comX;
@@ -67,8 +62,6 @@ public class LayerPoint extends Layer {
         this.rmLineY = this.pointY + IMG_POINT.getHeight(null) + PADDING;
         // 初始化经验值y坐标
         this.expY = this.rmLineY + IMG_RMLINE.getHeight(null) + PADDING;
-        // 初始化经验值槽宽度
-        this.expW = this.w - (PADDING << 1);
     }
 
     public void paint(Graphics g) {
@@ -82,33 +75,9 @@ public class LayerPoint extends Layer {
         // 显示消行
         this.drawNumber(comX, rmLineY, this.dto.getNowRemoveLine(), POINT_BIT, g);
         // 绘制值槽(经验值)
-        int h = 32;
-        g.setColor(Color.BLACK);
-        g.fillRect(this.x + PADDING, this.y + expY, this.expW, h);
-        g.setColor(Color.WHITE);
-        g.fillRect(this.x + PADDING + 1, this.y + expY + 1, this.expW - 2, h - 2);
-        g.setColor(Color.BLACK);
-        g.fillRect(this.x + PADDING + 2, this.y + expY + 2, this.expW - 4, h - 4);
-        // TODO 临时
         int rmLine = this.dto.getNowRemoveLine();
-        int w = (int) (((double) (rmLine % LEVEL_UP) / (double) LEVEL_UP) * (this.expW - 4));
-        g.setColor(this.getNowColor((double) (rmLine % LEVEL_UP), (double) LEVEL_UP));
-        g.fillRect(this.x + PADDING + 2, this.y + expY + 2, w, h - 4);
-    }
-
-    private Color getNowColor(double hp, double maxHp) {
-        int colorR = 0;
-        int colorG = 255;
-        int colorB = 0;
-        double hpHalf = maxHp / 2;
-        if (hp > hpHalf) {
-            colorR = 255 - (int) ((hp - hpHalf) / (maxHp / 2) * 255);
-            colorG = 255;
-        } else {
-            colorR = 255;
-            colorG = (int) (hp / (maxHp / 2) * 255);
-        }
-        return new Color(colorR, colorG, colorB);
+        this.drawRect(expY, "下一级", null, (double) (rmLine % LEVEL_UP), (double) LEVEL_UP, g);
+        // TODO 临时
     }
 
 }
