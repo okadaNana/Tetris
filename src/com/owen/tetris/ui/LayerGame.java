@@ -12,8 +12,6 @@ import java.awt.*;
  */
 public class LayerGame extends Layer {
 
-    private static final Image ACT = new ImageIcon("graphics/game/rect.png").getImage();
-
     private static final int ACT_SIZE = 32;
 
     private static final int SIZE_ROL = 5;
@@ -49,7 +47,7 @@ public class LayerGame extends Layer {
      * 绘制正方形块
      */
     private void draActByPoint(int x, int y, int imgIdx, Graphics g) {
-        g.drawImage(ACT,
+        g.drawImage(Img.ACT,
                 this.x + (x << SIZE_ROL) + 7,
                 this.y + (y << SIZE_ROL) + 7,
                 this.x + (x + 1 << SIZE_ROL) + 7,

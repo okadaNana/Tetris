@@ -31,19 +31,14 @@ public abstract class Layer {
     }
 
     /**
-     * 窗口图片
-     */
-    private static final Image WINDOW_IMG = new ImageIcon("graphics/window/Window.png").getImage();
-
-    /**
      * 图片的宽度
      */
-    private static final int WINDOW_W = WINDOW_IMG.getWidth(null);
+    private static final int WINDOW_W = Img.WINDOW.getWidth(null);
 
     /**
      * 图片的高度
      */
-    private static final int WINDOW_H = WINDOW_IMG.getHeight(null);
+    private static final int WINDOW_H = Img.WINDOW.getHeight(null);
 
     /**
      * 窗口左上角 x 坐标
@@ -70,36 +65,26 @@ public abstract class Layer {
      */
     protected GameDto dto;
 
-
-    /**
-     * 数字图片(260*36)
-     */
-    private static final Image IMG_NUMBER = new ImageIcon("graphics/string/num.png").getImage();
-
     /**
      * 数字切片的宽度
      */
-    protected static final int IMG_NUMBER_W = IMG_NUMBER.getWidth(null) / 10;
+    protected static final int IMG_NUMBER_W = Img.NUMBER.getWidth(null) / 10;
 
     /**
      * 数字切片的高度
      */
-    private static final int IMG_NUMBER_H = IMG_NUMBER.getHeight(null);
+    private static final int IMG_NUMBER_H = Img.NUMBER.getHeight(null);
 
-    /**
-     * 矩形值槽
-     */
-    private static final Image IMG_RECT = new ImageIcon("graphics/window/rect.png").getImage();
 
     /**
      * 矩形值槽图片的高度
      */
-    private static final int IMG_RECT_H = IMG_RECT.getHeight(null);
+    private static final int IMG_RECT_H = Img.RECT.getHeight(null);
 
     /**
      * 矩形值槽图片的宽度
      */
-    private static final int IMG_RECT_W = IMG_RECT.getWidth(null);
+    private static final int IMG_RECT_W = Img.RECT.getWidth(null);
 
     /**
      * 矩形值槽的宽度
@@ -121,15 +106,15 @@ public abstract class Layer {
      * 绘制窗口
      */
     protected void createWindow(Graphics g) {
-        g.drawImage(WINDOW_IMG, x, y, x + SIZE, y + SIZE, 0, 0, SIZE, SIZE, null);
-        g.drawImage(WINDOW_IMG, x + SIZE, y, x + w - SIZE, y + SIZE, SIZE, 0, WINDOW_W - SIZE, SIZE, null);
-        g.drawImage(WINDOW_IMG, x + w - SIZE, y, x + w, y + SIZE, WINDOW_W - SIZE, 0, WINDOW_W, SIZE, null);
-        g.drawImage(WINDOW_IMG, x, y + SIZE, x + SIZE, y + h - SIZE, 0, SIZE, SIZE, WINDOW_H - SIZE, null);
-        g.drawImage(WINDOW_IMG, x + SIZE, y + SIZE, x + w - SIZE, y + h - SIZE, SIZE, SIZE, WINDOW_W - SIZE, WINDOW_H - SIZE, null);
-        g.drawImage(WINDOW_IMG, x + w - SIZE, y + SIZE, x + w, y + h - SIZE, WINDOW_W - SIZE, SIZE, WINDOW_W, WINDOW_H - SIZE, null);
-        g.drawImage(WINDOW_IMG, x, y + h - SIZE, x + SIZE, y + h, 0, WINDOW_H - SIZE, SIZE, WINDOW_H, null);
-        g.drawImage(WINDOW_IMG, x + SIZE, y + h - SIZE, x + w - SIZE, y + h, SIZE, WINDOW_H - SIZE, WINDOW_W - SIZE, WINDOW_H, null);
-        g.drawImage(WINDOW_IMG, x + w - SIZE, y + h - SIZE, x + w, y + h, WINDOW_W - SIZE, WINDOW_H - SIZE, WINDOW_W, WINDOW_H, null);
+        g.drawImage(Img.WINDOW, x, y, x + SIZE, y + SIZE, 0, 0, SIZE, SIZE, null);
+        g.drawImage(Img.WINDOW, x + SIZE, y, x + w - SIZE, y + SIZE, SIZE, 0, WINDOW_W - SIZE, SIZE, null);
+        g.drawImage(Img.WINDOW, x + w - SIZE, y, x + w, y + SIZE, WINDOW_W - SIZE, 0, WINDOW_W, SIZE, null);
+        g.drawImage(Img.WINDOW, x, y + SIZE, x + SIZE, y + h - SIZE, 0, SIZE, SIZE, WINDOW_H - SIZE, null);
+        g.drawImage(Img.WINDOW, x + SIZE, y + SIZE, x + w - SIZE, y + h - SIZE, SIZE, SIZE, WINDOW_W - SIZE, WINDOW_H - SIZE, null);
+        g.drawImage(Img.WINDOW, x + w - SIZE, y + SIZE, x + w, y + h - SIZE, WINDOW_W - SIZE, SIZE, WINDOW_W, WINDOW_H - SIZE, null);
+        g.drawImage(Img.WINDOW, x, y + h - SIZE, x + SIZE, y + h, 0, WINDOW_H - SIZE, SIZE, WINDOW_H, null);
+        g.drawImage(Img.WINDOW, x + SIZE, y + h - SIZE, x + w - SIZE, y + h, SIZE, WINDOW_H - SIZE, WINDOW_W - SIZE, WINDOW_H, null);
+        g.drawImage(Img.WINDOW, x + w - SIZE, y + h - SIZE, x + w, y + h, WINDOW_W - SIZE, WINDOW_H - SIZE, WINDOW_W, WINDOW_H, null);
     }
 
     public void setDto(GameDto dto) {
@@ -164,7 +149,7 @@ public abstract class Layer {
                 // 把数字num中的每一个取出
                 int bit = strNum.charAt(idx) - '0';
                 // 绘制数字
-                g.drawImage(IMG_NUMBER,
+                g.drawImage(Img.NUMBER,
                         this.x + x + IMG_NUMBER_W * i, this.y + y,
                         this.x + x + IMG_NUMBER_W * (i + 1), this.y + y + IMG_NUMBER_H,
                         bit * IMG_NUMBER_W, 0, (bit + 1) * IMG_NUMBER_W, IMG_NUMBER_H, null);
@@ -194,7 +179,7 @@ public abstract class Layer {
         int w = (int) (p * (rectW - 4));
         // 求出颜色
         int subIdx = (int) (p * IMG_RECT_W);
-        g.drawImage(IMG_RECT,
+        g.drawImage(Img.RECT,
                 rect_x + 2, rect_y + 2,
                 rect_x - 2 + w, rect_y + 2 + IMG_RECT_H,
                 subIdx, 0, subIdx + 1, IMG_RECT_H,
