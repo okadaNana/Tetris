@@ -79,7 +79,7 @@ public abstract class Layer {
     /**
      * 矩形值槽图片的高度
      */
-    private static final int IMG_RECT_H = Img.RECT.getHeight(null);
+    protected static final int IMG_RECT_H = Img.RECT.getHeight(null);
 
     /**
      * 矩形值槽图片的宽度
