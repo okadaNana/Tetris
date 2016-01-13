@@ -1,10 +1,12 @@
 package com.owen.tetris.service;
 
 import com.owen.tetris.dto.GameDto;
+import com.owen.tetris.dto.Player;
 import com.owen.tetris.entity.GameAct;
 
 import java.awt.*;
-import java.util.Random;
+import java.awt.List;
+import java.util.*;
 
 /**
  * 游戏逻辑
@@ -97,4 +99,14 @@ public class GameService {
         this.dto.setNowLevel(lv);
         this.dto.setNowRemoveLine(rmLine);
     }
+
+
+    public void setDbRecord(java.util.List<Player> players) {
+        this.dto.setDbRecord(players);
+    }
+
+    public void setDiskRecord(java.util.List<Player> players) {
+        this.dto.setDiskRecord(players);
+    }
+
 }

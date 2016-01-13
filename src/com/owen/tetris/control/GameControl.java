@@ -1,7 +1,13 @@
 package com.owen.tetris.control;
 
+import com.owen.tetris.dao.Data;
+import com.owen.tetris.dao.DataBase;
+import com.owen.tetris.dao.DataTest;
+import com.owen.tetris.dto.Player;
 import com.owen.tetris.service.GameService;
 import com.owen.tetris.ui.JPanelGame;
+
+import java.util.List;
 
 /**
  * 游戏控制器
@@ -13,6 +19,16 @@ import com.owen.tetris.ui.JPanelGame;
  * Created by mike on 15/12/21.
  */
 public class GameControl {
+
+    /**
+     * 数据访问接口A
+     */
+    private Data dataA;
+
+    /**
+     * 数据访问接口B
+     */
+    private Data dataB;
 
     /**
      * 游戏界面层
@@ -27,6 +43,10 @@ public class GameControl {
     public GameControl(JPanelGame panelGame, GameService gameService) {
         this.panelGame = panelGame;
         this.gameService = gameService;
+        this.dataA = new DataTest();
+        this.dataB = new DataTest();
+        this.gameService.setDbRecord(dataA.loadData());
+        this.gameService.setDiskRecord(dataB.loadData());
     }
 
     /**
@@ -66,4 +86,5 @@ public class GameControl {
         this.gameService.testLevelUp();
         this.panelGame.repaint();
     }
+
 }

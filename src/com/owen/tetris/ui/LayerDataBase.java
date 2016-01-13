@@ -1,9 +1,11 @@
 package com.owen.tetris.ui;
 
+import com.owen.tetris.dto.Player;
 import com.sun.scenario.effect.impl.prism.PrImage;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.*;
 
 /**
  * Created by mike on 15/12/15.
@@ -33,8 +35,13 @@ public class LayerDataBase extends Layer {
     public void paint(Graphics g) {
         this.createWindow(g);
         g.drawImage(Img.DB, this.x + PADDING, this.y + PADDING, null);
+        java.util.List<Player>  players = this.dto.getDbRecord();
+        int nowPoint = this.dto.getNowPoint();
         for (int i = 0; i < MAX_ROW; i++) {
-            this.drawRect(START_Y + i * (RECT_H + SPA), "No Data", "", 0, 100, g);
+            Player pla = players.get(i);
+            double percent = (double) nowPoint / pla.getPoint();
+            percent = percent > 1 ? 1.0 : percent;
+            this.drawRect(START_Y + i * (RECT_H + SPA), "No Data", "", percent, g);
         }
     }
 
